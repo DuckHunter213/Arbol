@@ -36,22 +36,24 @@ void Lista::ordenarFechaEdicion(){
 		vuelta = vuelta+1;
 	}
 	aux=cab;
-	while(aux!=NULL){
-	    cout<<"Perro: "<<endl;
+	for (int i=1;i<vuelta;++i){
+		for (int j=0;j<vuelta-1;++j){
 		aux1= aux;
 		aux2 = aux->sig;
-		if(aux1->fechaEdicion>aux2->fechaEdicion){
-			aux3->nombre = aux1->nombre;
-			aux3->fechaEdicion = aux1->fechaEdicion;
-			aux3->artista = aux1->artista;	
-			aux1->nombre = aux2->nombre;
-			aux1->fechaEdicion = aux2->fechaEdicion;
-			aux1->artista = aux2->artista;
-			aux2->nombre = aux3->nombre;
-			aux2->fechaEdicion = aux3->fechaEdicion;
-			aux2->artista = aux3->artista;
+			if(aux1->fechaEdicion>aux2->fechaEdicion){
+				aux3->nombre = aux1->nombre;
+				aux3->fechaEdicion = aux1->fechaEdicion;
+				aux3->artista = aux1->artista;	
+				aux1->nombre = aux2->nombre;
+				aux1->fechaEdicion = aux2->fechaEdicion;
+				aux1->artista = aux2->artista;
+				aux2->nombre = aux3->nombre;
+				aux2->fechaEdicion = aux3->fechaEdicion;
+				aux2->artista = aux3->artista;
+			}
+			aux = aux->sig;
 		}
-		aux = aux->sig;
+	aux=cab;
 	}
 }
 
@@ -122,7 +124,11 @@ int main(){
 			Lista1.ordenarFechaEdicion();
 			break;
 		case 4:
+			Lista1.ordenarNombre();
+			break;
 		case 5:
+			Lista1.ordenarArtista();
+			break;
 		case 6:
 			menu=6;
 		default:
