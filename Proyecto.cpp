@@ -10,12 +10,13 @@ public:
 	friend class Lista;
 };
 
+
 class Lista{
 private:
 	Nodo *cab;
 public:
 	Lista();
-	void nuevoNodo(string nombre,int fechaEdicion,string artista,int numerador);
+	void nuevoNodo(string nombre,int fechaEdicion,string artista);
 	int estaVacia();
 	void insertar(Nodo *&nuevo);
 	void mostrar();
@@ -27,34 +28,30 @@ int Lista::estaVacia(){return cab==NULL;}
 
 void Lista::ordenarFechaEdicion(){
 	Nodo *aux,*aux1,*aux2,*aux3;
-	aux=cab;
-	aux3=cab;
-	aux1=cab;
-	aux2=aux1->sig;
+	aux=aux1=aux3=cab;
+    aux2=cab->sig;
 	int vuelta=0;
 	while(aux!=NULL){
 		aux = aux->sig;
 		vuelta = vuelta+1;
-		cout<<vuelta<<endl;
 	}
 	aux=cab;
 	while(aux!=NULL){
-		cout<<"perico"<<endl;
-		for(int i=1;i<vuelta;i++){
-			for(int j=0;j<vuelta;j++){
-				if(aux1->fechaEdicion>aux2->fechaEdicion){
-					aux3->nombre = aux1->nombre;
-					aux3->fechaEdicion = aux1->fechaEdicion;
-					aux3->artista = aux1->artista;	
-					aux1->nombre = aux2->nombre;
-					aux1->fechaEdicion = aux2->fechaEdicion;
-					aux1->artista = aux2->artista;
-					aux2->nombre = aux3->nombre;
-					aux2->fechaEdicion = aux3->fechaEdicion;
-					aux2->artista = aux3->artista;
-				}
-			}
+	    cout<<"Perro: "<<endl;
+		aux1= aux;
+		aux2 = aux->sig;
+		if(aux1->fechaEdicion>aux2->fechaEdicion){
+			aux3->nombre = aux1->nombre;
+			aux3->fechaEdicion = aux1->fechaEdicion;
+			aux3->artista = aux1->artista;	
+			aux1->nombre = aux2->nombre;
+			aux1->fechaEdicion = aux2->fechaEdicion;
+			aux1->artista = aux2->artista;
+			aux2->nombre = aux3->nombre;
+			aux2->fechaEdicion = aux3->fechaEdicion;
+			aux2->artista = aux3->artista;
 		}
+		aux = aux->sig;
 	}
 }
 
@@ -71,13 +68,12 @@ void Lista::mostrar(){
 		vuelta = vuelta+1;
 	}
 }
-void Lista::nuevoNodo(string nombre,int fechaEdicion,string artista,int numerador){
+void Lista::nuevoNodo(string nombre,int fechaEdicion,string artista){
 	Nodo *nuevo;
 	nuevo = new Nodo;
 	nuevo->nombre = nombre;
 	nuevo->fechaEdicion = fechaEdicion;
 	nuevo->artista = artista;
-	nuevo->numerador = numerador;
 	nuevo->sig=cab;
 	cab=nuevo;
 }
